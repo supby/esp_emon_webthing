@@ -1,1 +1,6 @@
-# esp_emon_webthing
+# ESP8266 Energy Monitor WebThing
+
+
+Energy monitor based on ESP8266 and WebThing API https://iot.mozilla.org/wot/
+
+Solution is PlatformIO project using Arduino framework. https://platformio.org/
