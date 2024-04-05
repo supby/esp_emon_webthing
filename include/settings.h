@@ -3,3 +3,4 @@
 #define NETWORK_DEVICE_NAME_PREFIX "esp-emon-webthing"
 #define WEBTHING_DEVICE_ID "esp_emon_webthing"
 #define WEBTHING_DEVICE_TITLE "Energy Monitor"
+#define UPDATE_RATE_MS 1000

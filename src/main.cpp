@@ -52,16 +52,16 @@ void setup() {
 }
 
 void loop() {
-  // TODO: add webthing properties updating
-
-  delay(1000);
+  delay(UPDATE_RATE_MS);
 
   double Irms = emon.calcIrms(1480);
 
-  double constantVolatge = 230;
+  double constantVolatge = 230; // TODO: contant for now
 
   double power = constantVolatge * Irms;
 
   Log.info(F("Current: %D, Voltage: %D, Power: %D" CR), Irms, constantVolatge, power);
+
+  updateThingProperties(Irms, constantVolatge, power);  
 }
 
