@@ -1,13 +1,10 @@
-#define LARGE_JSON_BUFFERS 1
-#define ARDUINOJSON_USE_LONG_LONG 1
-#define DEVICE_NAME "esp_emon_webthing"
-
 #include <Arduino.h>
 #include <ArduinoJson.h>
 
 // logs
 #include <ArduinoLog.h>
 
+#include "settings.h"
 #include "webthing.h"
 #include "ota.h"
 #include "wifi.h"
@@ -22,7 +19,7 @@ void setup() {
 
   Log.begin(LOG_LEVEL_VERBOSE, &Serial);
 
-  String deviceName(DEVICE_NAME);
+  String deviceName(NETWORK_DEVICE_NAME_PREFIX);
   deviceName.concat("-");
   deviceName.concat(ESP.getChipId());
   deviceName.toLowerCase();
