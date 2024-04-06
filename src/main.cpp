@@ -1,5 +1,6 @@
 #include <Arduino.h>
 #include <ArduinoJson.h>
+#include <Ticker.h>
 
 // logs
 #include <ArduinoLog.h>
@@ -12,6 +13,17 @@
 #include "EmonLib.h"
 
 EnergyMonitor emon;
+Ticker checkPropertiesTimer;
+
+void checkProperties() {
+  double Irms = emon.calcIrms(EMON_NUMBER_OF_SAMPLES);
+  double constantVolatge = 230; // TODO: constant for now
+  double power = constantVolatge * Irms;
+
+  Log.info(F("Current: %D, Voltage: %D, Power: %D" CR), Irms, constantVolatge, power);
+
+  updateThingProperties(Irms, constantVolatge, power);
+}
 
 void setup() {
 
@@ -55,24 +67,18 @@ void setup() {
 
   Log.info(F("Setting up EMON..." CR));
 
-  emon.current(A0, 15);
+  emon.current(A0, EMON_ICAL);
 
   Log.info(F("Setting up EMON completed." CR));
+
+  checkPropertiesTimer.attach(UPDATE_RATE_SEC, checkProperties);
 
   Log.info(F("Setup DONE." CR));
 }
 
 void loop() {
-  delay(UPDATE_RATE_MS);
-
-  double Irms = emon.calcIrms(1480);
-
-  double constantVolatge = 230; // TODO: contant for now
-
-  double power = constantVolatge * Irms;
-
-  Log.info(F("Current: %D, Voltage: %D, Power: %D" CR), Irms, constantVolatge, power);
-
-  updateThingProperties(Irms, constantVolatge, power);  
+  ArduinoOTA.handle();
 }
+
+
 
