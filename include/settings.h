@@ -3,7 +3,7 @@
 #define NETWORK_DEVICE_NAME_PREFIX "esp-emon-webthing"
 #define WEBTHING_DEVICE_ID "esp_emon_webthing"
 #define WEBTHING_DEVICE_TITLE "Energy Monitor"
-#define UPDATE_RATE_SEC 1
+#define UPDATE_RATE_SEC 60
 #define BOARD_LED_BUILTIN 16
 #define EMON_ICAL 15
 #define EMON_NUMBER_OF_SAMPLES 1480
