@@ -29,7 +29,7 @@ void setupWebThing(String deviceName) {
   webThingAdapter->begin();
 }
 
-void updateThingProperties(double current, double voltage, double power) {
+void updateThingProperties(float current, float voltage, float power) {
   ThingPropertyValue currentValue;
   currentValue.number = current;    
   currentProperty.setValue(currentValue);

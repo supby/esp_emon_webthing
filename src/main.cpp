@@ -1,6 +1,7 @@
 #include <Arduino.h>
 #include <ArduinoJson.h>
 #include <Ticker.h>
+#include <math.h>
 
 // logs
 #include <ArduinoLog.h>
@@ -16,9 +17,9 @@ EnergyMonitor emon;
 Ticker checkPropertiesTimer;
 
 void checkProperties() {
-  double Irms = emon.calcIrms(EMON_NUMBER_OF_SAMPLES);
-  double constantVolatge = 230; // TODO: constant for now
-  double power = constantVolatge * Irms;
+  float Irms = roundf(emon.calcIrms(EMON_NUMBER_OF_SAMPLES) * 100) / 100;
+  float constantVolatge = 230; // TODO: constant for now
+  float power = constantVolatge * Irms;
 
   Log.info(F("Current: %D, Voltage: %D, Power: %D" CR), Irms, constantVolatge, power);
 
