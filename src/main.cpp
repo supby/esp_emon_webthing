@@ -17,7 +17,7 @@ EnergyMonitor emon;
 Ticker checkPropertiesTimer;
 
 void checkProperties() {
-  float Irms = roundf(emon.calcIrms(EMON_NUMBER_OF_SAMPLES) * 100) / 100;
+  float Irms = roundf(emon.calcIrms(EMON_NUMBER_OF_SAMPLES) * 1000) / 1000;
   float constantVolatge = 230; // TODO: constant for now
   float power = constantVolatge * Irms;
 
@@ -30,6 +30,7 @@ void setup() {
 
   pinMode(LED_BUILTIN, OUTPUT);
   pinMode(BOARD_LED_BUILTIN, OUTPUT);
+  pinMode(A0, INPUT);
 
   digitalWrite(16, LOW);
   digitalWrite(LED_BUILTIN, LOW);
